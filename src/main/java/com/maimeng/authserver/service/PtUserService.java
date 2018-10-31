@@ -3,13 +3,10 @@ package com.maimeng.authserver.service;
 import com.maimeng.authserver.global.bean.BaseData;
 import com.maimeng.authserver.global.bean.ResultCode;
 import com.maimeng.authserver.global.bean.ResultGenerator;
-import com.maimeng.authserver.global.jwt.JWTHelper;
-import com.maimeng.authserver.global.jwt.JwtInfo;
-import com.maimeng.authserver.global.jwt.KeyConfiguration;
+import com.maimeng.authserver.global.jwt.JwtUtils;
 import com.maimeng.authserver.global.util.Common;
 import com.maimeng.authserver.manager.PtUserManager;
 import com.maimeng.authserver.model.PtUser;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,9 +19,7 @@ public class PtUserService {
     @Resource
     private PtUserManager ptUserManager;
     @Resource
-    private KeyConfiguration keyConfiguration;
-    @Value("${jwt.expire}")
-    private int expire;
+    private JwtUtils jwtUtils;
 
     public BaseData login(String account, String password) {
         PtUser ptUser = ptUserManager.findByAccount(account);
@@ -39,10 +34,7 @@ public class PtUserService {
         }
         // Create Twt token
         try {
-            String token = JWTHelper.generateToken(new JwtInfo(ptUser.getUserId(), ptUser.getName(),
-                            System.currentTimeMillis()),
-                    keyConfiguration.getUserPriKey(),
-                    expire);
+            String token = jwtUtils.generateToken(ptUser.getId());
             return ResultGenerator.genSuccessResult(token);
         } catch (Exception e) {
             e.printStackTrace();
