@@ -1,27 +1,26 @@
 package com.maimeng.authserver.global.util;
 
-import sun.misc.BASE64Encoder;
-
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import com.xiaoleilu.hutool.crypto.digest.DigestUtil;
+import com.xiaoleilu.hutool.lang.Base64;
 
 /**
  * @author wuweifeng wrote on 2018/10/30.
  */
 public class Common {
     public static String md5(String str) {
-        //确定计算方法
-        MessageDigest md5 = null;
-        try {
-            md5 = MessageDigest.getInstance("MD5");
-            BASE64Encoder base64en = new BASE64Encoder();
-            //加密后的字符串
-            return base64en.encode(md5.digest(str.getBytes("utf-8")));
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return DigestUtil.md5Hex(str);
+    }
 
+    public static String base64(String str) {
+        return Base64.encode(str);
+    }
+
+    public static String base64Decode(String str) {
+        return Base64.decodeStr(str);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(md5("123456"));
+        System.out.println(base64("123456"));
     }
 }
