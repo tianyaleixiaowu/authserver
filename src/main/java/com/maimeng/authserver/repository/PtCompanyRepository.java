@@ -18,6 +18,4 @@ public interface PtCompanyRepository extends JpaRepository<PtCompany, Long>,
      * @return List
      */
     List<PtCompany> findByNameLike(String name);
-
-
 }

@@ -5,6 +5,7 @@ import com.maimeng.authserver.repository.PtCompanyRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author wuweifeng wrote on 2017/10/26.
@@ -30,5 +31,8 @@ public class PtCompanyManager {
         return ptCompanyRepository.save(ptCompany);
     }
 
+    public List<PtCompany> findByNameLike(String name) {
+        return ptCompanyRepository.findByNameLike("%" + name + "%");
+    }
 
 }

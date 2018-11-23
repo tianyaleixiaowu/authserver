@@ -12,6 +12,7 @@ import com.maimeng.authserver.model.PtUser;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author wuweifeng wrote on 2018/10/30.
@@ -51,12 +52,19 @@ public class PtUserService {
         if (ptUser != null) {
             return ResultGenerator.genFailResult("用户已存在");
         }
+
+        List<PtCompany> companyList = ptCompanyManager.findByNameLike(companyName);
+        if (companyList.size() > 0) {
+            return ResultGenerator.genFailResult("公司名称已存在类似");
+        }
+
         ptUser = new PtUser();
         PtCompany ptCompany = new PtCompany();
         ptCompany.setName(companyName);
         ptCompany = ptCompanyManager.add(ptCompany);
 
         ptUser.setCompanyId(ptCompany.getId());
+        ptUser.setName(name);
         ptUser.setAccount(account);
         ptUser.setPassword(password);
         ptUserManager.add(ptUser);
