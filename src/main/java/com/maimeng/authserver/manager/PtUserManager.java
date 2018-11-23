@@ -24,4 +24,8 @@ public class PtUserManager {
     public PtUser findByAccount(String account) {
         return ptUserRepository.findByAccount(account);
     }
+
+    public PtUser add(PtUser ptUser) {
+        return ptUserRepository.save(ptUser);
+    }
 }

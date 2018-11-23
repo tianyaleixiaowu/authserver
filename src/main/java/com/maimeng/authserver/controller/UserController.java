@@ -23,4 +23,8 @@ public class UserController {
         return ptUserService.login(account, password);
     }
 
+    @PostMapping("/regist")
+    public BaseData regist(String account, String password, String companyName, String name) {
+        return ptUserService.regist(account, password, companyName, name);
+    }
 }
