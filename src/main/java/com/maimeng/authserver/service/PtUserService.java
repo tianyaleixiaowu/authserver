@@ -61,11 +61,13 @@ public class PtUserService {
         ptUser = new PtUser();
         PtCompany ptCompany = new PtCompany();
         ptCompany.setName(companyName);
+        ptCompany.setMobile(account);
         ptCompany = ptCompanyManager.add(ptCompany);
 
         ptUser.setCompanyId(ptCompany.getId());
         ptUser.setName(name);
         ptUser.setAccount(account);
+        ptUser.setMobile(account);
         ptUser.setPassword(password);
         ptUserManager.add(ptUser);
 

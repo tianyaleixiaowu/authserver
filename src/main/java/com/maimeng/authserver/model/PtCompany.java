@@ -17,6 +17,7 @@ public class PtCompany extends BaseEntity {
      * 公司名称
      */
     private String name;
+    private String mobile;
     /**
      * 公司状态（0正常，1欠费，-1产品故障等等）
      */
@@ -26,8 +27,17 @@ public class PtCompany extends BaseEntity {
     public String toString() {
         return "PtCompany{" +
                 "name='" + name + '\'' +
+                ", mobile='" + mobile + '\'' +
                 ", status=" + status +
                 '}';
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getName() {
