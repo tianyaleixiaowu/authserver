@@ -4,7 +4,6 @@ import com.maimeng.authserver.global.bean.BaseData;
 import com.maimeng.authserver.global.bean.ResultCode;
 import com.maimeng.authserver.global.bean.ResultGenerator;
 import com.maimeng.authserver.global.jwt.JwtUtils;
-import com.maimeng.authserver.global.util.Common;
 import com.maimeng.authserver.manager.PtCompanyManager;
 import com.maimeng.authserver.manager.PtUserManager;
 import com.maimeng.authserver.model.PtCompany;
@@ -32,7 +31,7 @@ public class PtUserService {
             //用户不存在
             return ResultGenerator.genFailResult(ResultCode.USER_NO_EXIST, "用户不存在");
         }
-        if (!ptUser.getPassword().equals(Common.md5(password))) {
+        if (!ptUser.getPassword().equals(password)) {
             //密码错误
             //用户不存在
             return ResultGenerator.genFailResult(ResultCode.PASSWORD_ERROR, "密码错误");
