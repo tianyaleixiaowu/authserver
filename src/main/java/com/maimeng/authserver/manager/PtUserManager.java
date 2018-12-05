@@ -28,4 +28,8 @@ public class PtUserManager {
     public PtUser add(PtUser ptUser) {
         return ptUserRepository.save(ptUser);
     }
+
+    public PtUser update(PtUser ptUser) {
+        return ptUserRepository.save(ptUser);
+    }
 }

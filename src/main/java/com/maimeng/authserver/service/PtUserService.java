@@ -78,4 +78,17 @@ public class PtUserService {
             return null;
         }
     }
+
+
+    public BaseData updatePassword(String account, String pass) {
+        PtUser ptUser = ptUserManager.findByAccount(account);
+        if (ptUser == null) {
+            //用户不存在
+            return ResultGenerator.genFailResult(ResultCode.USER_NO_EXIST, "用户不存在");
+        }
+
+        ptUser.setPassword(pass);
+        ptUserManager.update(ptUser);
+        return ResultGenerator.genSuccessResult("修改成功");
+    }
 }
