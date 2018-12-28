@@ -59,7 +59,15 @@ public class PtUser extends BaseEntity {
      * 状态，（0正常，-1被删除，1是不获取该用户EC通话信息）
      */
     private Integer state = 0;
+    private Boolean deleteFlag;
 
+    public Boolean getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 
     public String getTitle() {
         return title;

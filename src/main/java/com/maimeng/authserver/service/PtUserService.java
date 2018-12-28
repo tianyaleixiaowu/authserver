@@ -36,6 +36,10 @@ public class PtUserService {
             //用户不存在
             return ResultGenerator.genFailResult(ResultCode.PASSWORD_ERROR, "密码错误");
         }
+        if (ptUser.getDeleteFlag() || ptUser.getState() != 0) {
+            //没有权限
+            return ResultGenerator.genFailResult(ResultCode.UNAUTHORIZED, "该用户没有权限");
+        }
         // Create Twt token
         try {
             String token = jwtUtils.generateToken(ptUser.getId());
