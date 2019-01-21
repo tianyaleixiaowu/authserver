@@ -72,6 +72,7 @@ public class PtUserService {
         ptUser.setAccount(account);
         ptUser.setMobile(account);
         ptUser.setPassword(password);
+        ptUser.setDeleteFlag(false);
         ptUserManager.add(ptUser);
 
         try {
